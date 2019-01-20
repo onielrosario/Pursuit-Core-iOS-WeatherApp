@@ -16,16 +16,16 @@ class MainViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    backGroundImage.loadGif(name: "wathBackground")
-    
-  }
-
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        backGroundImage.loadGif(name: "wathBackground")
+        
+    }
     
     
-
+    
+    
+    
 }
 

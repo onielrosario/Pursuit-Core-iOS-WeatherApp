@@ -9,12 +9,12 @@
 import UIKit
 
 class WeatherDetailController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
-
-
+    
+    
 }
