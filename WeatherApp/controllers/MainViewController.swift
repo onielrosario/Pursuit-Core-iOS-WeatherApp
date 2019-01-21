@@ -78,9 +78,9 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCollectionCell else { return UICollectionViewCell() }
          let weather = forecast[indexPath.row]
-        cell.weeklyDate.text = "\(weather.dateTimeISO)"
-        cell.highF.text = "High: \(weather.maxTempF)°"
-        cell.lowF.text = "Low: \(weather.minTempF)°"
+        cell.weeklyDate.text = "\(weather.dateFormattedString)"
+        cell.highF.text = "High: \(weather.maxTempF)°F"
+        cell.lowF.text = "Low: \(weather.minTempF)°F"
         cell.forecastImage.image = UIImage(named: "\(weather.iconImage)")
         cell.layer.cornerRadius = 5
         return cell
