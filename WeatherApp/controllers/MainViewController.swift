@@ -24,8 +24,10 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         backGroundImage.loadGif(name: "wathBackground")
+        textField.delegate = self
         collectionView.dataSource = self
+         backGroundImage.loadGif(name: "wathBackground")
+        collectionView.layer.cornerRadius = 5
         getForecast()
         var city = ""
         ZipCodeHelper.getLocationName(from: isZipCode()) { (error, cityName) in
@@ -84,4 +86,10 @@ extension MainViewController: UICollectionViewDataSource {
         cell.layer.cornerRadius = 5
         return cell
     }
+}
+
+extension MainViewController: UITextFieldDelegate {
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//
+//    }
 }
