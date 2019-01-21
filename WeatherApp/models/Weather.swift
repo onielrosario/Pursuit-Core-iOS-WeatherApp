@@ -14,8 +14,8 @@ struct Weather: Codable {
 }
 
 struct Response: Codable {
-    let loc: Location
-    let interval: String
+    let loc: Location?
+    let interval: String?
     let periods: [Period]
     let profile: Profile
 }
@@ -27,7 +27,7 @@ struct Location: Codable {
 
 //Additional information about the weather including the high, low, sunrise, sunset, windspeed and precipitation
 struct Period: Codable {
-    let validTime: Int
+    let validTime: String
     let dateTimeISO: String
     let maxTempF: Int
     let minTempF: Int

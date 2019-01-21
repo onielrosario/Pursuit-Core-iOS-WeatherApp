@@ -14,6 +14,4 @@ class WeatherCollectionCell: UICollectionViewCell {
     @IBOutlet weak var highF: UILabel!
     @IBOutlet weak var lowF: UILabel!
     
-    
-    
 }

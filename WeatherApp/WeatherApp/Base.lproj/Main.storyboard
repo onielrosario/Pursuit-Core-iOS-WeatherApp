@@ -38,26 +38,26 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mrg-1X-4Ya">
-                                                    <rect key="frame" x="19" y="9" width="153" height="21"/>
+                                                    <rect key="frame" x="19" y="28" width="153" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Gw-Ia-t9a">
-                                                    <rect key="frame" x="50" y="35" width="90" height="90"/>
+                                                    <rect key="frame" x="50" y="54" width="90" height="90"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="90" id="Ndc-Qu-XKJ"/>
                                                         <constraint firstAttribute="width" secondItem="6Gw-Ia-t9a" secondAttribute="height" multiplier="1:1" id="PWb-Vl-5uU"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJJ-uE-Aad">
-                                                    <rect key="frame" x="19" y="125" width="153" height="21"/>
+                                                    <rect key="frame" x="19" y="144" width="153" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPd-qj-hFE">
-                                                    <rect key="frame" x="19" y="146" width="153" height="21"/>
+                                                    <rect key="frame" x="19" y="165" width="153" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -75,7 +75,7 @@
                                             <constraint firstItem="NJJ-uE-Aad" firstAttribute="leading" secondItem="dpa-om-mTX" secondAttribute="leadingMargin" constant="11" id="dha-0k-21a"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="6Gw-Ia-t9a" secondAttribute="trailing" constant="43" id="dpd-Ce-trb"/>
                                             <constraint firstItem="NJJ-uE-Aad" firstAttribute="top" secondItem="6Gw-Ia-t9a" secondAttribute="bottom" id="e98-1o-z3T"/>
-                                            <constraint firstItem="Mrg-1X-4Ya" firstAttribute="top" secondItem="dpa-om-mTX" secondAttribute="topMargin" constant="-19" id="nOR-4j-ixb"/>
+                                            <constraint firstItem="Mrg-1X-4Ya" firstAttribute="top" secondItem="dpa-om-mTX" secondAttribute="topMargin" id="nOR-4j-ixb"/>
                                             <constraint firstItem="pPd-qj-hFE" firstAttribute="width" secondItem="NJJ-uE-Aad" secondAttribute="width" id="pPm-2J-A5K"/>
                                             <constraint firstItem="pPd-qj-hFE" firstAttribute="leading" secondItem="dpa-om-mTX" secondAttribute="leadingMargin" constant="11" id="r2P-aM-ofb"/>
                                         </constraints>

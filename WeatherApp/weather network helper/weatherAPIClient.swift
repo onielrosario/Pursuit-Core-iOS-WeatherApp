@@ -10,8 +10,9 @@ import Foundation
 
 
 final class weatherAPIClient {
-    static func getElements(completionHandler: @escaping (AppError?, [Weather]?) -> Void) {
-        NetworkHelper.shared.performDataTask(endpointURLString: "MyUrl.GetElements", httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
+    static var allTheWeather = [Period]()
+    static func getWeather(completionHandler: @escaping (AppError?, [Response]?) -> Void) {
+        NetworkHelper.shared.performDataTask(endpointURLString: MyUrl.getWeather, httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
             if let appError = appError {
                 completionHandler(appError, nil)
             }
@@ -23,8 +24,9 @@ final class weatherAPIClient {
             }
             if let data = data {
                 do {
-                    _ = try JSONDecoder().decode([Weather].self, from: data)
-                    
+                    let weather = try JSONDecoder().decode(Weather.self, from: data)
+                   completionHandler(nil , weather.response)
+        
                 } catch {
                     completionHandler(AppError.decodingError(error), nil)
                 }
@@ -33,7 +35,7 @@ final class weatherAPIClient {
     }
     
     static func getCities(completionhandler: @escaping(AppError?, [Image]?) -> Void) {
-        NetworkHelper.shared.performDataTask(endpointURLString: "END-POINT", httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
+        NetworkHelper.shared.performDataTask(endpointURLString: MyUrl.GetPixaPhotos, httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
             if let appError = appError {
                 completionhandler(appError, nil)
             }
