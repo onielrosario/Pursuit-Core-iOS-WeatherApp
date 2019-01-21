@@ -51,6 +51,7 @@ extension MainViewController: UICollectionViewDataSource {
         cell.weeklyDate.text = "\(weather.dateTimeISO)"
         cell.highF.text = "\(weather.maxTempF)"
         cell.lowF.text = "\(weather.minTempF)"
+        cell.forecastImage.image = UIImage(named: "\(weather.iconImage)")
         return cell
     }
 }

@@ -37,6 +37,11 @@ struct Period: Codable {
     let windSpeedMPH: Int
     let weather: String
     let icon: String
+    var iconImage: String {
+        var arrayOfImage = [String]()
+      arrayOfImage.append(contentsOf: icon.components(separatedBy: "."))
+        return arrayOfImage[0]
+    }
     let sunriseISO: String
     let sunsetISO: String
     
