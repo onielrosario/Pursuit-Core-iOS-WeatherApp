@@ -11,8 +11,8 @@ import Foundation
 
 final class weatherAPIClient {
     static var allTheWeather = [Period]()
-    static func getWeather(completionHandler: @escaping (AppError?, [Response]?) -> Void) {
-        NetworkHelper.shared.performDataTask(endpointURLString: MyUrl.getWeather, httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
+    static func getWeather(keyword: String, completionHandler: @escaping (AppError?, [Response]?) -> Void) {
+        NetworkHelper.shared.performDataTask(endpointURLString: "http://api.aerisapi.com/forecasts/\(keyword)?client_id=\(Keys.accessID)&client_secret=\(Keys.AerisKey)", httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
             if let appError = appError {
                 completionHandler(appError, nil)
             }
@@ -34,8 +34,8 @@ final class weatherAPIClient {
         }
     }
     
-    static func getCities(completionhandler: @escaping(AppError?, [Image]?) -> Void) {
-        NetworkHelper.shared.performDataTask(endpointURLString: MyUrl.GetPixaPhotos, httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
+    static func getCities(keyword: String, completionhandler: @escaping(AppError?, [Image]?) -> Void) {
+        NetworkHelper.shared.performDataTask(endpointURLString: "https://pixabay.com/api/?key=\(Keys.pixaBayKey)&q=\(keyword)&image_type=photo", httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
             if let appError = appError {
                 completionhandler(appError, nil)
             }
