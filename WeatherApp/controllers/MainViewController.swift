@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var zipCode: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    public var city = ""
     private var forecast = [Period]() {
         didSet {
             DispatchQueue.main.async {
@@ -29,23 +30,21 @@ class MainViewController: UIViewController {
          backGroundImage.loadGif(name: "wathBackground")
         collectionView.layer.cornerRadius = 5
         getForecast()
-        var city = ""
         ZipCodeHelper.getLocationName(from: isZipCode()) { (error, cityName) in
             if let error = error {
                 print("error: \(error)")
             } else if let cityName = cityName {
-                city = cityName
-              self.cityName.text = "Weather forecast for \(city)"
+              self.cityName.text = "Weather forecast for \(cityName)"
             }
         }
-    
+    zipCode.text = "Enter your Zip Code"
     
     }
     
     private func isZipCode() -> String {
         var zipCode = ""
         if textField.text == "" {
-            textField.text = "10023"
+         return "10023"
         }
          guard let searchText = textField.text else { return "Invalid Zipcode" }
        zipCode.append(searchText)
@@ -56,8 +55,8 @@ class MainViewController: UIViewController {
             return "text entered not invalid"
         }
         return zipCode
+        
     }
-    
     
     private func getForecast() {
         weatherAPIClient.getWeather(keyword: isZipCode()) { (appError, response) in
@@ -89,7 +88,28 @@ extension MainViewController: UICollectionViewDataSource {
 }
 
 extension MainViewController: UITextFieldDelegate {
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//
-//    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+       textField.becomeFirstResponder()
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.resignFirstResponder()
+       textField.placeholder = "e.g 10023"
+        print("ended editing")
+        
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+       textField.resignFirstResponder()
+      getForecast()
+        ZipCodeHelper.getLocationName(from: isZipCode()) { (error, cityName) in
+            if let error = error {
+                print("error: \(error)")
+            } else if let cityName = cityName {
+                self.cityName.text = "Weather forecast for \(cityName)"
+            }
+        }
+        return true
+    }
+    
 }

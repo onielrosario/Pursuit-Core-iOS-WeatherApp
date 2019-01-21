@@ -6,6 +6,11 @@
 //  Copyright © 2019 Pursuit. All rights reserved.
 //
 
+
+// https://github.com/swiftgif/SwiftGif/blob/master/SwiftGifCommon/UIImage%2BGif.swift
+// found this method to be able to play gif files on uiimage.
+
+
 import UIKit
 import ImageIO
 
