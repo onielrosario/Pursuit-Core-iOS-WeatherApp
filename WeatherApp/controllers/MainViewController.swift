@@ -27,28 +27,28 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         textField.delegate = self
         collectionView.dataSource = self
-         backGroundImage.loadGif(name: "wathBackground")
+        backGroundImage.loadGif(name: "wathBackground")
         collectionView.layer.cornerRadius = 5
         getForecast()
         ZipCodeHelper.getLocationName(from: isZipCode()) { (error, cityName) in
             if let error = error {
                 print("error: \(error)")
             } else if let cityName = cityName {
-               self.city = cityName
-              self.cityName.text = "Weather forecast for \(cityName)"
+                self.city = cityName
+                self.cityName.text = "Weather forecast for \(cityName)"
             }
         }
-    zipCode.text = "Enter your Zip Code"
-    
+        zipCode.text = "Enter your Zip Code"
+        
     }
     
     private func isZipCode() -> String {
         var zipCode = ""
         if textField.text == "" {
-         return "10023"
+            return "10023"
         }
-         guard let searchText = textField.text else { return "Invalid Zipcode" }
-       zipCode.append(searchText)
+        guard let searchText = textField.text else { return "Invalid Zipcode" }
+        zipCode.append(searchText)
         guard zipCode.count == 5 else {
             return "text entered not invalid"
         }
@@ -64,7 +64,7 @@ class MainViewController: UIViewController {
             if let appError = appError {
                 print(AppError.errorMessage(appError))
             } else if let response = response {
-           let allForecast = response[response.count - 1].periods
+                let allForecast = response[response.count - 1].periods
                 self.forecast = allForecast
             }
         }
@@ -73,9 +73,9 @@ class MainViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? WeatherDetailController else { fatalError("error in the segue") }
         destination.cityName = city.lowercased()
-      guard let selectedArray = collectionView.indexPathsForSelectedItems else {return}
-       let selectedIndexPathRow = selectedArray[0].row
-    destination.forecast = forecast[selectedIndexPathRow]
+        guard let selectedArray = collectionView.indexPathsForSelectedItems else {return}
+        let selectedIndexPathRow = selectedArray[0].row
+        destination.forecast = forecast[selectedIndexPathRow]
     }
 }
 
@@ -86,7 +86,7 @@ extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCollectionCell else { return UICollectionViewCell() }
-         let weather = forecast[indexPath.row]
+        let weather = forecast[indexPath.row]
         cell.weeklyDate.text = "\(weather.dateFormattedString)"
         cell.highF.text = "High: \(weather.maxTempF)°F"
         cell.lowF.text = "Low: \(weather.minTempF)°F"
@@ -99,18 +99,18 @@ extension MainViewController: UICollectionViewDataSource {
 extension MainViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
-       textField.becomeFirstResponder()
+        textField.becomeFirstResponder()
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.resignFirstResponder()
-       textField.placeholder = "e.g 10023"
+        textField.placeholder = "e.g 10023"
         print("ended editing")
         
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-       textField.resignFirstResponder()
-      getForecast()
+        textField.resignFirstResponder()
+        getForecast()
         ZipCodeHelper.getLocationName(from: isZipCode()) { (error, cityName) in
             if let error = error {
                 print("error: \(error)")

@@ -62,6 +62,42 @@ struct Period: Codable {
         }
         return formattedDate
     }
+    public var sunriseFormattedString: String {
+        let isoDateFormatter = ISO8601DateFormatter()
+        var formattedDate = sunriseISO
+        if let date = isoDateFormatter.date(from: sunriseISO) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm:ss.SSS"
+            formattedDate = dateFormatter.string(from: date)
+        }
+        return formattedDate
+    }
+    public var sunriseTime: Date {
+        let isoFormatter = ISO8601DateFormatter()
+        var formattedDate = Date()
+        if let date = isoFormatter.date(from: sunriseISO) {
+            formattedDate = date
+        }
+        return formattedDate
+    }
+    public var sunsetFormattedString: String {
+        let isoDateFormatter = ISO8601DateFormatter()
+        var formattedDate = sunsetISO
+        if let date = isoDateFormatter.date(from: formattedDate) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm:ss.SSS"
+            formattedDate = dateFormatter.string(from: date)
+        }
+        return formattedDate
+    }
+    public var sunsetTime: Date {
+        let isoFormatter = ISO8601DateFormatter()
+        var formattedDate = Date()
+        if let date = isoFormatter.date(from: sunsetISO) {
+            formattedDate = date
+        }
+        return formattedDate
+    }
 }
 
 struct Profile: Codable {

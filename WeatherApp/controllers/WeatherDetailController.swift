@@ -53,12 +53,15 @@ class WeatherDetailController: UIViewController {
         }
         weatherDescription.text = forecast.weather
         highF.text = "\(forecast.maxTempF)"
+        highF.textColor = .white
         lowF.text = "\(forecast.minTempF)"
-        sunrise.text = "\(forecast.sunriseISO)"
-        sunset.text = "\(forecast.sunsetISO)"
+        highF.textColor = .white
+        sunrise.text = "\(forecast.sunriseFormattedString)"
+        sunrise.textColor = .white
+        sunset.text = "\(forecast.sunsetFormattedString)"
+        sunset.textColor = .white
         windSpeed.text = "Wind Speed: \(forecast.windSpeedMPH)MPH"
-     
-        
+        windSpeed.textColor = .white
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {

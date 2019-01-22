@@ -26,8 +26,8 @@ final class weatherAPIClient {
             if let data = data {
                 do {
                     let weather = try JSONDecoder().decode(Weather.self, from: data)
-                   completionHandler(nil , weather.response)
-        
+                    completionHandler(nil , weather.response)
+                    
                 } catch {
                     completionHandler(AppError.decodingError(error), nil)
                 }
