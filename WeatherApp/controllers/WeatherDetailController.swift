@@ -24,7 +24,13 @@ class WeatherDetailController: UIViewController {
         return cityName.replacingOccurrences(of: " ", with: "+")
     }
     public var forecast: Period!
-    private var image = [Image]()
+    private var image = [Image]() {
+        didSet {
+            DispatchQueue.main.async {
+             self.cityImage.reloadInputViews()
+            }
+        }
+    }
     
     
     
@@ -51,12 +57,13 @@ class WeatherDetailController: UIViewController {
                 }
             })
         }
-        weatherDescription.text = forecast.weather
+        weatherDescription.text = "\(forecast.weather)"
+        weatherDescription.shadowColor = .black
         weatherDescription.textColor = .white
-        highF.text = "\(forecast.maxTempF)"
+        highF.text = "High: \(forecast.maxTempF)°F"
         highF.textColor = .white
-        lowF.text = "\(forecast.minTempF)"
-        highF.textColor = .white
+        lowF.text = "Low: \(forecast.minTempF)°F"
+        lowF.textColor = .white
         sunrise.text = "\(forecast.sunriseFormattedString)"
         sunrise.textColor = .white
         sunset.text = "\(forecast.sunsetFormattedString)"
@@ -64,7 +71,7 @@ class WeatherDetailController: UIViewController {
         windSpeed.text = "Wind Speed: \(forecast.windSpeedMPH)MPH"
         windSpeed.textColor = .white
         precipitation.textColor = .white
-        precipitation.text = "Precipitacion: \(forecast.precipIN)"
+        precipitation.text = "Precipitacion: \(forecast.precipIN)' inches"
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {

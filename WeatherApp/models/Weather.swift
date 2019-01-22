@@ -31,7 +31,7 @@ struct Period: Codable {
     let dateTimeISO: String
     let maxTempF: Int
     let minTempF: Int
-    let precipIN: Int
+    let precipIN: Double
     let humidity: Int
     let feelslikeF: Int
     let windDir: String

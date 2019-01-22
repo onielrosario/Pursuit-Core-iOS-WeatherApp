@@ -10,8 +10,6 @@ import Foundation
 
 
 final class weatherAPIClient {
-    static var allTheWeather = [Period]()
-    public var images = [Image]()
     static func getWeather(keyword: String, completionHandler: @escaping (AppError?, [Response]?) -> Void) {
         NetworkHelper.shared.performDataTask(endpointURLString: "http://api.aerisapi.com/forecasts/\(keyword)?client_id=\(Keys.accessID)&client_secret=\(Keys.AerisKey)", httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
             if let appError = appError {
