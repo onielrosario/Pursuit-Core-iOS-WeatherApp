@@ -49,7 +49,7 @@ class WeatherDetailController: UIViewController {
             } else if let images = images {
                 self.image = images
             }
-            ImageHelper.shared.fetchImage(urlString: self.image[0].largeImageURL, completionHandler: { (appError, myImage) in
+            ImageHelper.shared.fetchImage(urlString: self.image[Int.random(in: 0..<self.image.count - 1)].largeImageURL, completionHandler: { (appError, myImage) in
                 if let appError = appError {
                     print(appError.errorMessage())
                 } else if let myImage = myImage {
@@ -91,4 +91,10 @@ class WeatherDetailController: UIViewController {
     }
     
     
+}
+
+extension Collection where Indices.Iterator.Element == Index {
+    subscript (exist index: Index) -> Iterator.Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
 }

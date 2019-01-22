@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
         }
         guard let searchText = textField.text else { return "Invalid Zipcode" }
         zipCode.append(searchText)
-        guard zipCode.count == 5 else {
+        guard zipCode.count <= 5 else {
             return "text entered not invalid"
         }
         if !(Int(zipCode) != nil) {
@@ -64,7 +64,7 @@ class MainViewController: UIViewController {
             if let appError = appError {
                 print(AppError.errorMessage(appError))
             } else if let response = response {
-                let allForecast = response[response.count - 1].periods
+               let allForecast = response[response.count - 1].periods
                 self.forecast = allForecast
             }
         }
