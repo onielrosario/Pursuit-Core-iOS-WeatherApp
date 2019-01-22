@@ -332,6 +332,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Favorite" id="YmL-gd-TGl"/>
                     <connections>
+                        <outlet property="collectionView" destination="sGj-72-7gd" id="Cho-3a-kHv"/>
                         <outlet property="favoriteBackground" destination="4Vx-UI-5gx" id="eoW-Pi-TEn"/>
                     </connections>
                 </viewController>

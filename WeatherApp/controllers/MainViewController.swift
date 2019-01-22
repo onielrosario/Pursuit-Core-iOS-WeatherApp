@@ -25,7 +25,6 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(DataPersistenceManager.filePathToDocumentsDirectory(filename: "FavoriteInfo.plist"))
         textField.delegate = self
         collectionView.dataSource = self
         backGroundImage.loadGif(name: "wathBackground")
