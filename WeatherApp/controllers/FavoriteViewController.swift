@@ -10,9 +10,19 @@ import UIKit
 
 class FavoriteViewController: UIViewController {
     @IBOutlet weak var favoriteBackground: UIImageView!
+    private var favoriteimages = [Favorite]() {
+        didSet {
+         
+        }
+    }
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
     }
 }

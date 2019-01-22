@@ -20,10 +20,10 @@ class WeatherDetailController: UIViewController {
     @IBOutlet weak var windSpeed: UILabel!
     @IBOutlet weak var precipitation: UILabel!
     public var cityName: String!
-    public var cityImageUrl: String!
     private var formattedCityName: String {
         return cityName.replacingOccurrences(of: " ", with: "+")
     }
+    private var selectedImage: Image!
     public var forecast: Period!
     private var images = [Image]() {
         didSet {
@@ -53,9 +53,8 @@ class WeatherDetailController: UIViewController {
             guard self.images.count > 0 else {
                 return 
             }
-            let imageURL = self.images[Int.random(in: 0..<self.images.count - 1)].largeImageURL
-            self.cityImageUrl = imageURL
-            ImageHelper.shared.fetchImage(urlString: imageURL , completionHandler: { (appError, myImage) in
+            let randomImage = self.images[Int.random(in: 0..<self.images.count - 1)]
+            ImageHelper.shared.fetchImage(urlString: randomImage.largeImageURL , completionHandler: { (appError, myImage) in
                 if let appError = appError {
                     print(appError.errorMessage())
                 } else if let myImage = myImage {
@@ -94,7 +93,22 @@ class WeatherDetailController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-    cityImageHelper.addPhoto(image: cityImageUrl)
+        let date = Date()
+        let isoDateFormatter = ISO8601DateFormatter()
+        isoDateFormatter.formatOptions = [.withFullDate,
+                                          .withFullTime,
+                                          .withInternetDateTime,
+                                          .withTimeZone,
+                                          .withDashSeparatorInDate]
+
+        
+        let timeStamp = isoDateFormatter.string(from: date)
+        //if selectedImage != nil {
+        if let imageData = cityImage.image?.jpegData(compressionQuality: 0.5) {
+            let photo = Favorite.init(imageData: imageData, createdAt: timeStamp, description: "")
+            cityImageHelper.addPhoto(image: photo)
+        }
+        //}
         let alert = UIAlertController(title: "Saved", message: "Your message has been saved to favorite", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default){
             _ in

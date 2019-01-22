@@ -15,4 +15,7 @@ struct ImageModel: Codable {
 
 struct Image: Codable {
     let largeImageURL: String
+    let tags: String
+    let user: String
+    let favorites: Int
 }

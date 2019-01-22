@@ -9,13 +9,14 @@
 import Foundation
 
 final class cityImageHelper {
-    public static let filename = "CityImage.plist"
-    private static var images = [String]()
+    public static let filename = "FavoriteInfo.plist"
+//    private static var images = [String]()
+    public static var favoriteImages = [Favorite]()
     private init() {}
     static func savePhoto() {
         let path = DataPersistenceManager.filePathToDocumentsDirectory(filename: filename)
         do {
-            let data = try PropertyListEncoder().encode(images)
+            let data = try PropertyListEncoder().encode(favoriteImages)
             try data.write(to: path, options: Data.WritingOptions.atomic)
         } catch {
             print("property list error: \(error)")
@@ -27,8 +28,8 @@ final class cityImageHelper {
         if FileManager.default.fileExists(atPath: pathString) {
             if let data = FileManager.default.contents(atPath: pathString) {
             do {
-                let urlImages = try PropertyListDecoder().decode([Image].self, from: data)
-                self.images = [urlImages[urlImages.count - 1].largeImageURL]
+                let Images = try PropertyListDecoder().decode([Favorite].self, from: data)
+                self.favoriteImages = Images
             } catch {
                 print("property list deocoding error: \(error)")
             }
@@ -39,12 +40,12 @@ final class cityImageHelper {
             print("\(filename) could not be located")
         }
     }
-    static func addPhoto(image: String) {
-        images.append(image)
+    static func addPhoto(image: Favorite) {
+        favoriteImages.append(image)
         savePhoto()
     }
     static func deletePhoto(atIndex index: Int) {
-        images.remove(at: index)
+        favoriteImages.remove(at: index)
         savePhoto()
     }
   

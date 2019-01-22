@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09A81FC721F7C5790077511F /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A81FC621F7C5790077511F /* Favorite.swift */; };
 		09C7177A21F3AD0700D377B4 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C7177921F3AD0700D377B4 /* FavoriteViewController.swift */; };
 		09C7177C21F3ADC900D377B4 /* cities.gif in Resources */ = {isa = PBXBuildFile; fileRef = 09C7177B21F3ADC900D377B4 /* cities.gif */; };
 		09C7177E21F3AF8700D377B4 /* WeatherDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C7177D21F3AF8700D377B4 /* WeatherDetailController.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09A81FC621F7C5790077511F /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		09C7177921F3AD0700D377B4 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		09C7177B21F3ADC900D377B4 /* cities.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cities.gif; sourceTree = "<group>"; };
 		09C7177D21F3AF8700D377B4 /* WeatherDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				09C7178F21F4283F00D377B4 /* CityImage.swift */,
 				09EFD21C21F4FDC300E8D691 /* DataPersistenceManager.swift */,
 				09EFD21E21F4FE1400E8D691 /* CityModel.swift */,
+				09A81FC621F7C5790077511F /* Favorite.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				09F4981C21F39696005A5F7D /* WeatherAPIClient.swift in Sources */,
 				09C7178E21F421CE00D377B4 /* WeatherCollectionCell.swift in Sources */,
 				09C7177A21F3AD0700D377B4 /* FavoriteViewController.swift in Sources */,
+				09A81FC721F7C5790077511F /* Favorite.swift in Sources */,
 				09F4981921F3943C005A5F7D /* Keys.swift in Sources */,
 				09C7177E21F3AF8700D377B4 /* WeatherDetailController.swift in Sources */,
 			);
