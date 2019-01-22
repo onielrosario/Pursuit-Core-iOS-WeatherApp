@@ -41,7 +41,7 @@ class WeatherDetailController: UIViewController {
     
     public func setupUI(forecast: Period) {
         backGroundImage.loadGif(name: "sunny")
-        detailNameandDate.text = "\(cityName!) forecast for: \(forecast.dateFormattedString)"
+        detailNameandDate.text = "\(cityName!.capitalized) forecast for: \(forecast.dateFormattedString)"
         detailNameandDate.textColor = .white
         weatherAPIClient.getCities(url: "https://pixabay.com/api/?key=\(Keys.pixaBayKey)&q=\(self.formattedCityName)&image_type=photo") { (appError, images) in
             if let appError = appError {
@@ -59,19 +59,32 @@ class WeatherDetailController: UIViewController {
         }
         weatherDescription.text = "\(forecast.weather)"
         weatherDescription.shadowColor = .black
+        weatherDescription.shadowOffset = CGSize(width: 1, height: 1)
         weatherDescription.textColor = .white
         highF.text = "High: \(forecast.maxTempF)°F"
         highF.textColor = .white
+        highF.shadowColor = .black
+        highF.shadowOffset = CGSize(width: 1, height: 1)
         lowF.text = "Low: \(forecast.minTempF)°F"
         lowF.textColor = .white
+        lowF.shadowColor = .black
+        lowF.shadowOffset = CGSize(width: 1, height: 1)
         sunrise.text = "\(forecast.sunriseFormattedString)"
         sunrise.textColor = .white
+        sunrise.shadowColor = .black
+        sunrise.shadowOffset = CGSize(width: 1, height: 1)
         sunset.text = "\(forecast.sunsetFormattedString)"
         sunset.textColor = .white
+        sunset.shadowColor = .black
+        sunset.shadowOffset = CGSize(width: 1, height: 1)
         windSpeed.text = "Wind Speed: \(forecast.windSpeedMPH)MPH"
         windSpeed.textColor = .white
+        windSpeed.shadowColor = .black
+        windSpeed.shadowOffset = CGSize(width: 1, height: 1)
         precipitation.textColor = .white
         precipitation.text = "Precipitacion: \(forecast.precipIN)' inches"
+        precipitation.shadowColor = .black
+        precipitation.shadowOffset = CGSize(width: 1, height: 1)
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {

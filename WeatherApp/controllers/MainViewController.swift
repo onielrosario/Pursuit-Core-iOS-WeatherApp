@@ -114,6 +114,7 @@ extension MainViewController: UITextFieldDelegate {
             if let error = error {
                 print("error: \(error)")
             } else if let cityName = cityName {
+                self.city = cityName
                 self.cityName.text = "Weather forecast for \(cityName)"
             }
         }
