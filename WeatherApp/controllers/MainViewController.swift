@@ -64,8 +64,7 @@ class MainViewController: UIViewController {
             if let appError = appError {
                 print(AppError.errorMessage(appError))
             } else if let response = response {
-               let allForecast = response[response.count - 1].periods
-                self.forecast = allForecast
+                self.forecast = response[response.count - 1].periods
             }
         }
     }
@@ -104,8 +103,8 @@ extension MainViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.resignFirstResponder()
+//        textField.text = ""
         textField.placeholder = "e.g 10023"
-        
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -120,5 +119,4 @@ extension MainViewController: UITextFieldDelegate {
         }
         return true
     }
-    
 }

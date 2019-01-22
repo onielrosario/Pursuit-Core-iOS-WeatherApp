@@ -24,10 +24,10 @@ class WeatherDetailController: UIViewController {
         return cityName.replacingOccurrences(of: " ", with: "+")
     }
     public var forecast: Period!
-    private var image = [Image]() {
+    private var images = [Image]() {
         didSet {
             DispatchQueue.main.async {
-             self.cityImage.reloadInputViews()
+                self.cityImage.reloadInputViews()
             }
         }
     }
@@ -47,9 +47,13 @@ class WeatherDetailController: UIViewController {
             if let appError = appError {
                 print(appError.errorMessage())
             } else if let images = images {
-                self.image = images
+                self.images = images
             }
-            ImageHelper.shared.fetchImage(urlString: self.image[Int.random(in: 0..<self.image.count - 1)].largeImageURL, completionHandler: { (appError, myImage) in
+            guard self.images.count > 0 else {
+                return 
+            }
+            let imageURL = self.images[Int.random(in: 0..<self.images.count - 1)].largeImageURL
+            ImageHelper.shared.fetchImage(urlString: imageURL , completionHandler: { (appError, myImage) in
                 if let appError = appError {
                     print(appError.errorMessage())
                 } else if let myImage = myImage {
@@ -88,6 +92,14 @@ class WeatherDetailController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        print("happened")
+        let alert = UIAlertController(title: "Saved", message: "Your message has been saved to favorite", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default){
+            _ in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
     }
     
     
