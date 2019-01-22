@@ -31,6 +31,7 @@ struct Period: Codable {
     let dateTimeISO: String
     let maxTempF: Int
     let minTempF: Int
+    let precipIN: Int
     let humidity: Int
     let feelslikeF: Int
     let windDir: String
@@ -67,7 +68,7 @@ struct Period: Codable {
         var formattedDate = sunriseISO
         if let date = isoDateFormatter.date(from: sunriseISO) {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm:ss.SSS"
+            dateFormatter.dateFormat = "HH:mm a"
             formattedDate = dateFormatter.string(from: date)
         }
         return formattedDate
@@ -85,7 +86,7 @@ struct Period: Codable {
         var formattedDate = sunsetISO
         if let date = isoDateFormatter.date(from: formattedDate) {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm:ss.SSS"
+            dateFormatter.dateFormat = "HH:mm a"
             formattedDate = dateFormatter.string(from: date)
         }
         return formattedDate

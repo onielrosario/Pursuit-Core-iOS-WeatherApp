@@ -105,7 +105,6 @@ extension MainViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.resignFirstResponder()
         textField.placeholder = "e.g 10023"
-        print("ended editing")
         
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
