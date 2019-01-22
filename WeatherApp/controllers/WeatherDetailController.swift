@@ -19,14 +19,45 @@ class WeatherDetailController: UIViewController {
     @IBOutlet weak var sunset: UILabel!
     @IBOutlet weak var windSpeed: UILabel!
     @IBOutlet weak var precipitation: UILabel!
-    
-    
-    
+    public var cityName: String!
+    private var formattedCityName: String {
+        return cityName.replacingOccurrences(of: " ", with: "+")
+    }
+    public var forecast: Period!
+    private var image = [Image]()
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI(forecast: forecast)
+    }
+    
+    public func setupUI(forecast: Period) {
+        backGroundImage.loadGif(name: "sunny")
+        detailNameandDate.text = "\(cityName!) forecast for: \(forecast.dateFormattedString)"
+        detailNameandDate.textColor = .white
+        weatherAPIClient.getCities(url: "https://pixabay.com/api/?key=\(Keys.pixaBayKey)&q=\(self.formattedCityName)&image_type=photo") { (appError, images) in
+            if let appError = appError {
+                print(appError.errorMessage())
+            } else if let images = images {
+                self.image = images
+            }
+            ImageHelper.shared.fetchImage(urlString: self.image[0].largeImageURL, completionHandler: { (appError, myImage) in
+                if let appError = appError {
+                    print(appError.errorMessage())
+                } else if let myImage = myImage {
+                    self.cityImage.image = myImage
+                }
+            })
+        }
+        weatherDescription.text = forecast.weather
+        highF.text = "\(forecast.maxTempF)"
+        lowF.text = "\(forecast.minTempF)"
+        sunrise.text = "\(forecast.sunriseISO)"
+        sunset.text = "\(forecast.sunsetISO)"
+        windSpeed.text = "Wind Speed: \(forecast.windSpeedMPH)MPH"
+     
         
     }
     

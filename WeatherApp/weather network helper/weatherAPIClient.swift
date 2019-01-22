@@ -11,6 +11,7 @@ import Foundation
 
 final class weatherAPIClient {
     static var allTheWeather = [Period]()
+    public var images = [Image]()
     static func getWeather(keyword: String, completionHandler: @escaping (AppError?, [Response]?) -> Void) {
         NetworkHelper.shared.performDataTask(endpointURLString: "http://api.aerisapi.com/forecasts/\(keyword)?client_id=\(Keys.accessID)&client_secret=\(Keys.AerisKey)", httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
             if let appError = appError {
@@ -33,9 +34,8 @@ final class weatherAPIClient {
             }
         }
     }
-    
-    static func getCities(keyword: String, completionhandler: @escaping(AppError?, [Image]?) -> Void) {
-        NetworkHelper.shared.performDataTask(endpointURLString: "https://pixabay.com/api/?key=\(Keys.pixaBayKey)&q=\(keyword)&image_type=photo", httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
+    static func getCities(url: String, completionhandler: @escaping(AppError?, [Image]?) -> Void) {
+        NetworkHelper.shared.performDataTask(endpointURLString: url, httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
             if let appError = appError {
                 completionhandler(appError, nil)
             }
@@ -47,8 +47,8 @@ final class weatherAPIClient {
             }
             if let data = data {
                 do {
-                    let cities = try JSONDecoder().decode([Image].self, from: data)
-                    completionhandler(nil, cities)
+                    let cities = try JSONDecoder().decode(ImageModel.self, from: data)
+                    completionhandler(nil, cities.hits)
                 } catch {
                     completionhandler(AppError.decodingError(error), nil)
                 }

@@ -34,6 +34,7 @@ class MainViewController: UIViewController {
             if let error = error {
                 print("error: \(error)")
             } else if let cityName = cityName {
+               self.city = cityName
               self.cityName.text = "Weather forecast for \(cityName)"
             }
         }
@@ -67,6 +68,14 @@ class MainViewController: UIViewController {
                 self.forecast = allForecast
             }
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? WeatherDetailController else { fatalError("error in the segue") }
+        destination.cityName = city.lowercased()
+      guard let selectedArray = collectionView.indexPathsForSelectedItems else {return}
+       let selectedIndexPathRow = selectedArray[0].row
+    destination.forecast = forecast[selectedIndexPathRow]
     }
 }
 

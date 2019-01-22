@@ -24,6 +24,7 @@
 		09F4981C21F39696005A5F7D /* weatherAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F4981B21F39696005A5F7D /* weatherAPIClient.swift */; };
 		09F4981F21F3989F005A5F7D /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F4981E21F3989F005A5F7D /* Background.swift */; };
 		09F4982221F39B07005A5F7D /* wathBackground.gif in Resources */ = {isa = PBXBuildFile; fileRef = 09F4982121F39B07005A5F7D /* wathBackground.gif */; };
+		09FDBE9D21F6AA05000A622E /* sunny.gif in Resources */ = {isa = PBXBuildFile; fileRef = 09FDBE9C21F6AA05000A622E /* sunny.gif */; };
 		57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE008D21F15D7000D76A6E /* AppDelegate.swift */; };
 		57EE009021F15D7000D76A6E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE008F21F15D7000D76A6E /* MainViewController.swift */; };
 		57EE009321F15D7100D76A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57EE009121F15D7100D76A6E /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 		09F4981B21F39696005A5F7D /* weatherAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weatherAPIClient.swift; sourceTree = "<group>"; };
 		09F4981E21F3989F005A5F7D /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		09F4982121F39B07005A5F7D /* wathBackground.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = wathBackground.gif; sourceTree = "<group>"; };
+		09FDBE9C21F6AA05000A622E /* sunny.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sunny.gif; sourceTree = "<group>"; };
 		57EE008A21F15D7000D76A6E /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EE008D21F15D7000D76A6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57EE008F21F15D7000D76A6E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 		09F4981D21F39887005A5F7D /* UISupport */ = {
 			isa = PBXGroup;
 			children = (
+				09FDBE9C21F6AA05000A622E /* sunny.gif */,
 				09F4981E21F3989F005A5F7D /* Background.swift */,
 				09F4982121F39B07005A5F7D /* wathBackground.gif */,
 				09C7177B21F3ADC900D377B4 /* cities.gif */,
@@ -289,6 +292,7 @@
 			files = (
 				57EE009821F15D7100D76A6E /* LaunchScreen.storyboard in Resources */,
 				57EE009521F15D7100D76A6E /* Assets.xcassets in Resources */,
+				09FDBE9D21F6AA05000A622E /* sunny.gif in Resources */,
 				09C7177C21F3ADC900D377B4 /* cities.gif in Resources */,
 				09C7178021F3BC9100D377B4 /* weatherAppLogo copy.png in Resources */,
 				09F4982221F39B07005A5F7D /* wathBackground.gif in Resources */,
