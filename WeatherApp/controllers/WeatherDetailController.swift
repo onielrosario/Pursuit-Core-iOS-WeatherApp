@@ -20,6 +20,7 @@ class WeatherDetailController: UIViewController {
     @IBOutlet weak var windSpeed: UILabel!
     @IBOutlet weak var precipitation: UILabel!
     public var cityName: String!
+    public var cityImageUrl: String!
     private var formattedCityName: String {
         return cityName.replacingOccurrences(of: " ", with: "+")
     }
@@ -53,6 +54,7 @@ class WeatherDetailController: UIViewController {
                 return 
             }
             let imageURL = self.images[Int.random(in: 0..<self.images.count - 1)].largeImageURL
+            self.cityImageUrl = imageURL
             ImageHelper.shared.fetchImage(urlString: imageURL , completionHandler: { (appError, myImage) in
                 if let appError = appError {
                     print(appError.errorMessage())
@@ -92,7 +94,7 @@ class WeatherDetailController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-        print("happened")
+    cityImageHelper.addPhoto(image: cityImageUrl)
         let alert = UIAlertController(title: "Saved", message: "Your message has been saved to favorite", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default){
             _ in

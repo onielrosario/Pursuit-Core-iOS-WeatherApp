@@ -9,8 +9,8 @@
 import Foundation
 
 final class cityImageHelper {
-    public static let filename = "PhotojournalList.plist"
-    private static var images = [Image]()
+    public static let filename = "CityImage.plist"
+    private static var images = [String]()
     private init() {}
     static func savePhoto() {
         let path = DataPersistenceManager.filePathToDocumentsDirectory(filename: filename)
@@ -27,7 +27,8 @@ final class cityImageHelper {
         if FileManager.default.fileExists(atPath: pathString) {
             if let data = FileManager.default.contents(atPath: pathString) {
             do {
-                images = try PropertyListDecoder().decode([Image].self, from: data)
+                let urlImages = try PropertyListDecoder().decode([Image].self, from: data)
+                self.images = [urlImages[urlImages.count - 1].largeImageURL]
             } catch {
                 print("property list deocoding error: \(error)")
             }
@@ -38,7 +39,7 @@ final class cityImageHelper {
             print("\(filename) could not be located")
         }
     }
-    static func addPhoto(image: Image) {
+    static func addPhoto(image: String) {
         images.append(image)
         savePhoto()
     }
@@ -46,9 +47,5 @@ final class cityImageHelper {
         images.remove(at: index)
         savePhoto()
     }
-    
-    static func editPhoto(image: Image, atIndex index: Int) {
-        images[index] = image
-        savePhoto()
-    }
+  
 }
