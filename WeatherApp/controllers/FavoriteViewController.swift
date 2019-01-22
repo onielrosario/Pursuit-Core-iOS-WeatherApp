@@ -13,6 +13,7 @@ class FavoriteViewController: UIViewController {
     @IBOutlet weak var favoriteBackground: UIImageView!
     private var favoriteimages = [Favorite]() {
         didSet {
+            
      self.collectionView.reloadData()
         }
     }
@@ -23,7 +24,14 @@ class FavoriteViewController: UIViewController {
         cityImageHelper.getImages()
     self.favoriteimages = cityImageHelper.favoriteImages
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+         cityImageHelper.getImages()
+        self.favoriteimages = cityImageHelper.favoriteImages
+    }
 }
+
+
 
 extension FavoriteViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
