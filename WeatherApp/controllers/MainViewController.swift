@@ -39,7 +39,6 @@ class MainViewController: UIViewController {
             }
         }
         zipCode.text = "Enter your Zip Code"
-        
     }
     
     private func isZipCode() -> String {
@@ -55,13 +54,17 @@ class MainViewController: UIViewController {
         if !(Int(zipCode) != nil) {
             return "text entered not invalid"
         }
-        
-        
         return zipCode
     }
     
     @IBAction func tapRecognizer(_ sender: UITapGestureRecognizer) {
-     self.textField.resignFirstResponder()
+        if textField.isEditing {
+            sender.isEnabled = true
+    textField.resignFirstResponder()
+        } else {
+            sender.isEnabled = false
+        }
+        
     }
     
     
@@ -70,12 +73,7 @@ class MainViewController: UIViewController {
             if let appError = appError {
                 print(AppError.errorMessage(appError))
             } else if let response = response {
-              let arrayOfForecast = response[response.count - 1].periods
-                if arrayOfForecast.count <= 0 {
-                    self.zipCode.text = "could not find this zip code"
-                    return
-                }
-                self.forecast = arrayOfForecast
+                self.forecast = response[response.count - 1].periods
             }
         }
     }
@@ -126,7 +124,6 @@ extension MainViewController: UITextFieldDelegate {
             self.zipCode.text = "Please enter valid Zip Code"
             return false
         }
-        
         ZipCodeHelper.getLocationName(from: isZipCode()) { (error, cityName) in
             if let error = error {
                 print("error: \(error)")
@@ -135,15 +132,11 @@ extension MainViewController: UITextFieldDelegate {
                 self.cityName.text = "Weather forecast for \(cityName)"
             }
         }
-        
         guard Int(textfield) != nil else {
-             self.zipCode.text = "Please enter valid Zip Code"
+            self.zipCode.text = "Please enter valid Zip Code"
             return false
         }
-        
-        
-         getForecast()
+        getForecast()
         return true
     }
-    
 }
