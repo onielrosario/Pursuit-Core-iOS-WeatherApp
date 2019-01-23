@@ -45,7 +45,7 @@ class MainViewController: UIViewController {
     private func isZipCode() -> String {
         var zipCode = ""
         if textField.text == "" {
-            return "10023"
+            zipCode = "10023"
         }
         guard let searchText = textField.text else { return "Invalid Zipcode" }
         zipCode.append(searchText)
@@ -55,6 +55,8 @@ class MainViewController: UIViewController {
         if !(Int(zipCode) != nil) {
             return "text entered not invalid"
         }
+        
+        
         return zipCode
     }
     
@@ -68,7 +70,12 @@ class MainViewController: UIViewController {
             if let appError = appError {
                 print(AppError.errorMessage(appError))
             } else if let response = response {
-                self.forecast = response[response.count - 1].periods
+              let arrayOfForecast = response[response.count - 1].periods
+                if arrayOfForecast.count <= 0 {
+                    self.zipCode.text = "could not find this zip code"
+                    return
+                }
+                self.forecast = arrayOfForecast
             }
         }
     }
@@ -108,7 +115,6 @@ extension MainViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.resignFirstResponder()
-//        textField.text = ""
         textField.placeholder = "e.g 10023"
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -121,7 +127,6 @@ extension MainViewController: UITextFieldDelegate {
             return false
         }
         
-        getForecast()
         ZipCodeHelper.getLocationName(from: isZipCode()) { (error, cityName) in
             if let error = error {
                 print("error: \(error)")
@@ -130,6 +135,15 @@ extension MainViewController: UITextFieldDelegate {
                 self.cityName.text = "Weather forecast for \(cityName)"
             }
         }
+        
+        guard Int(textfield) != nil else {
+             self.zipCode.text = "Please enter valid Zip Code"
+            return false
+        }
+        
+        
+         getForecast()
         return true
     }
+    
 }
