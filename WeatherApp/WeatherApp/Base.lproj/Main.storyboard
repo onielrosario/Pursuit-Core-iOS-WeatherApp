@@ -19,6 +19,10 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wt7-Nc-FLA">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="0eB-Q5-gCQ" appends="YES" id="WGY-ne-ao5"/>
+                                </connections>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7ya-Ge-Wn1">
                                 <rect key="frame" x="11" y="116" width="353" height="190"/>
@@ -109,6 +113,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Wt7-Nc-FLA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="BLp-4A-mEp"/>
                             <constraint firstItem="XaN-b0-OAd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="11" id="JLl-Qu-XGf"/>
@@ -129,6 +134,9 @@
                             <constraint firstItem="WJQ-rf-Fl5" firstAttribute="top" secondItem="7ya-Ge-Wn1" secondAttribute="bottom" constant="20" id="zBK-dx-A3b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="0eB-Q5-gCQ" appends="YES" id="fii-48-d77"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Forecast" id="d22-Fm-KPe"/>
                     <connections>
@@ -140,6 +148,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="0eB-Q5-gCQ">
+                    <connections>
+                        <action selector="tapRecognizer:" destination="BYZ-38-t0r" id="ujl-LC-GxT"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3460" y="494.30284857571218"/>
         </scene>

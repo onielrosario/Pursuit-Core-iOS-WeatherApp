@@ -56,8 +56,12 @@ class MainViewController: UIViewController {
             return "text entered not invalid"
         }
         return zipCode
-        
     }
+    
+    @IBAction func tapRecognizer(_ sender: UITapGestureRecognizer) {
+     self.textField.resignFirstResponder()
+    }
+    
     
     private func getForecast() {
         weatherAPIClient.getWeather(keyword: isZipCode()) { (appError, response) in
@@ -98,6 +102,7 @@ extension MainViewController: UICollectionViewDataSource {
 extension MainViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
+        zipCode.text = "Enter your Zip Code"
         textField.becomeFirstResponder()
     }
     
@@ -108,6 +113,14 @@ extension MainViewController: UITextFieldDelegate {
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        guard let textfield = textField.text else {
+            return false
+        }
+        guard textfield.count == 5 else {
+            self.zipCode.text = "Please enter valid Zip Code"
+            return false
+        }
+        
         getForecast()
         ZipCodeHelper.getLocationName(from: isZipCode()) { (error, cityName) in
             if let error = error {
